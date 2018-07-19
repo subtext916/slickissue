@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script src="dist/example.js"></script>
+
+    <title>Example</title>
+    <script>
+        function presentDemos() {
+            let columns1 = [
+                {id: 'one', name: 'One', field: 'one'},
+                {id: 'two', name: 'Two', field: 'two', minWidth: 300, width: 300},
+                {id: 'three', name: 'Three', field: 'three' }
+            ];
+
+            let demo1 = [
+                {one: 'blah blah', two: 'foo bar, whatever...', three: 'Etc...'},
+                {one: 'blah blah', two: 'foo bar, whatever...', three: 'Etc...'},
+                {one: 'blah blah', two: 'foo bar, whatever...', three: 'Etc...'}
+            ];
+
+            let options = {
+                enableCellNavigation: true,
+                enableColumnReorder: true
+            };
+            document.querySelectorAll('slick-grid')[0].setSize(800, 100);
+            document.querySelectorAll('slick-grid')[0].addTable({
+                headerData: columns1,
+                rowData: demo1
+            }, options);
+
+            // #2
+            let columns2 = [
+                {id: 'index', name: '#', field: 'index', minWidth: 20, width: 20, toolTip: 'Index tooltip', resizable: false },
+                {id: 'name', name: 'Name', field: 'name', formatter: (row, cell, value) => {
+                        return `<a href="#${row+1}/">${value}</a>`;
+                    } },
+                {id: 'description', name: 'Description', field: 'description' }
+            ];
+
+            let demo2 = [
+                {index: 1, name: 'Item #1', description: 'First item in the grid'}
+            ];
+
+            document.querySelectorAll('slick-grid')[1].setSize(800, 100);
+            document.querySelectorAll('slick-grid')[1].addTable({
+                headerData: columns2,
+                rowData: demo2
+            }, options);
+        }
+        function resizeComponent() {
+            document.querySelector('mycomosi-wc-matrix').resize(
+                (document.querySelector('body').clientWidth-10),
+                false
+            );
+        }
+    </script>
+</head>
+<body style="width: 90%; position: relative; margin: auto;" onresize="resizeComponent();">
+<h1>&lt;slickgrid-component&gt; web component</h1>
+<div>
+    <p>
+        Here's an example of the column issue
+    </p>
+</div>
+
+
+<slick-grid></slick-grid>
+<br />
+<slick-grid></slick-grid>
+
+<script>
+    presentDemos();
+</script>
+</body>
+</html>
