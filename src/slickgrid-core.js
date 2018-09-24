@@ -12,9 +12,6 @@ export class SlickgridCore {
 
     addTable(data, options) {
         this._grid = new this.slickgrid.Grid(this.container, data.rowData, data.headerData, options);
-        this._grid.onColumnsReordered.subscribe(function (e, args) {
-            console.info('columns reordered');
-        });
     }
 
     setSize(width, height) {

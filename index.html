@@ -95,7 +95,7 @@
     <script>
         function presentDemos() {
             let columns1 = [
-                {id: 'one', name: 'One', field: 'one', header: {
+                {id: 'one', name: 'One', field: 'one', width: 100, header: {
                         menu: {
                             items: [
                                 {
@@ -105,7 +105,7 @@
                             ]
                         }
                     }},
-                {id: 'two', name: 'Two', field: 'two', minWidth: 300, width: 300, header: {
+                {id: 'two', name: 'Two', field: 'two', width: 100, header: {
                         menu: {
                             items: [
                                 {
@@ -115,7 +115,7 @@
                             ]
                         }
                     }},
-                {id: 'three', name: 'Three', field: 'three', header: {
+                {id: 'three', name: 'Three', field: 'three', width: 100, header: {
                         menu: {
                             items: [
                                 {
@@ -128,16 +128,16 @@
             ];
 
             let demo1 = [
-                {one: 'blah blah', two: 'foo bar, whatever...', three: 'Etc...'},
-                {one: 'blah blah', two: 'foo bar, whatever...', three: 'Etc...'},
-                {one: 'blah blah', two: 'foo bar, whatever...', three: 'Etc...'}
+                {one: 'column1', two: 'column2', three: 'column3'},
+                {one: 'column1', two: 'column2', three: 'column3'},
+                {one: 'column1', two: 'column2', three: 'column3'}
             ];
 
             let options = {
                 enableCellNavigation: true,
-                enableColumnReorder: false
+                enableColumnReorder: true
             };
-            document.querySelector('slick-grid').setSize(800, 100);
+            document.querySelector('slick-grid').setSize(300, 100);
             document.querySelector('slick-grid').addTable({
                 headerData: columns1,
                 rowData: demo1
@@ -147,9 +147,6 @@
             let slick = document.querySelector('slick-grid')._core.slickgrid,
                 grid = document.querySelector('slick-grid')._core._grid;
             let headerMenuPlugin = new slick.Plugins.HeaderMenu({});
-            headerMenuPlugin.onBeforeMenuShow.subscribe(function(e, args){
-                console.info('onBeforeMenuShow event');
-            });
             grid.registerPlugin(headerMenuPlugin);
 
         }
@@ -159,7 +156,7 @@
 <h1>&lt;slickgrid-component&gt; web component</h1>
 <div>
     <p>
-        Here's an example of the problem with the subscriptions for slick header menu plugin
+        Here's an example of the problem with the header menu plugin getting cut off if on the far right
     </p>
 </div>
 
